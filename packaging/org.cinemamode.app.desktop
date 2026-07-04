@@ -5,5 +5,6 @@ Comment=One-click cinema mode for movie lovers with multi-monitor desks
 Exec=cinemamode
 Icon=org.cinemamode.app
 Categories=AudioVideo;Utility;
+Keywords=movie;cinema;monitor;display;projector;multi-monitor;screen;
 Terminal=false
 StartupNotify=true

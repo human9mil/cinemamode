@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 #include "monitorcontroller.h"
 
 #include <QProcess>
@@ -7,11 +8,61 @@
 #include <QJsonArray>
 #include <QSettings>
 #include <QStringList>
+#include <QDir>
+#include <QFile>
+#include <QDebug>
 
 namespace {
-constexpr auto kDefaultMainOutput = "DP-2";
+constexpr int kProcessTimeoutMs = 3000;
 
-QJsonArray queryOutputs()
+// Only used to seed QSettings on first launch; the fallback logic in
+// refreshOutputs() (the mainStillConnected check) immediately replaces this
+// if it turns out not to be an output that's actually connected.
+constexpr auto kFirstRunMainOutputHint = "DP-2";
+
+// Reads the monitor's own "Display Product Name" out of its EDID, straight from
+// sysfs — kscreen-doctor's JSON only ever gives us the connector name (DP-2 etc.),
+// never the actual manufacturer/model, so this is the only way to show a human name.
+QString friendlyNameFromEdid(const QString &connectorName)
+{
+    QDir drmDir(QStringLiteral("/sys/class/drm"));
+    const QStringList matches = drmDir.entryList({QStringLiteral("card*-%1").arg(connectorName)}, QDir::Dirs);
+    if (matches.isEmpty()) {
+        return {};
+    }
+
+    QFile edidFile(drmDir.filePath(matches.first() + QStringLiteral("/edid")));
+    if (!edidFile.open(QIODevice::ReadOnly)) {
+        return {};
+    }
+    const QByteArray edid = edidFile.readAll();
+
+    if (edid.size() < 128 || edid.left(8) != QByteArray::fromHex("00ffffffffffff00")) {
+        return {}; // not a valid base EDID block
+    }
+
+    // The four 18-byte descriptor blocks starting at offset 54 are either detailed
+    // timings or "display descriptors". A display descriptor has bytes 0-1 zero and
+    // byte 3 as a type tag; 0xFC is the display product name, stored as 13 bytes
+    // of padded ASCII at bytes 5-17.
+    for (const int offset : {54, 72, 90, 108}) {
+        const QByteArray block = edid.mid(offset, 18);
+        if (block.size() != 18 || block[0] != '\x00' || block[1] != '\x00') {
+            continue;
+        }
+        if (static_cast<unsigned char>(block[3]) == 0xFC) {
+            const QString name = QString::fromLatin1(block.mid(5, 13)).trimmed();
+            if (!name.isEmpty()) {
+                return name;
+            }
+        }
+    }
+    return {};
+}
+
+// Runs kscreen-doctor with the given arguments, waiting up to kProcessTimeoutMs.
+// Returns false (after killing/reaping the process) if it hangs or fails to start.
+bool runKscreenDoctor(const QStringList &args, QByteArray *standardOutput = nullptr)
 {
     QProcess process;
 
@@ -22,11 +73,32 @@ QJsonArray queryOutputs()
     env.remove(QStringLiteral("QT_QPA_PLATFORM"));
     process.setProcessEnvironment(env);
 
-    process.start(QStringLiteral("kscreen-doctor"), {QStringLiteral("-j")});
-    process.waitForFinished(3000);
-    const QByteArray raw = process.readAllStandardOutput();
+    process.start(QStringLiteral("kscreen-doctor"), args);
+    if (!process.waitForFinished(kProcessTimeoutMs)) {
+        qWarning() << "kscreen-doctor timed out or failed to start:" << process.errorString();
+        process.kill();
+        process.waitForFinished(1000);
+        return false;
+    }
 
-    const QJsonDocument doc = QJsonDocument::fromJson(raw);
+    if (standardOutput) {
+        *standardOutput = process.readAllStandardOutput();
+    }
+    return true;
+}
+
+QJsonArray queryOutputs()
+{
+    QByteArray raw;
+    if (!runKscreenDoctor({QStringLiteral("-j")}, &raw)) {
+        return QJsonArray{};
+    }
+
+    QJsonParseError parseError;
+    const QJsonDocument doc = QJsonDocument::fromJson(raw, &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "Failed to parse kscreen-doctor JSON:" << parseError.errorString();
+    }
     return doc.object().value(QStringLiteral("outputs")).toArray();
 }
 }
@@ -35,7 +107,7 @@ MonitorController::MonitorController(QObject *parent)
     : QObject(parent)
 {
     QSettings settings;
-    m_mainOutput = settings.value(QStringLiteral("mainOutput"), QString::fromLatin1(kDefaultMainOutput)).toString();
+    m_mainOutput = settings.value(QStringLiteral("mainOutput"), QString::fromLatin1(kFirstRunMainOutputHint)).toString();
 
     refreshOutputs();
 }
@@ -70,6 +142,7 @@ bool MonitorController::cinemaActive() const
 
 void MonitorController::refreshOutputs()
 {
+    const QVariantList previousOutputs = m_outputs;
     m_outputs.clear();
 
     const QJsonArray outputs = queryOutputs();
@@ -85,9 +158,14 @@ void MonitorController::refreshOutputs()
         const QString name = obj.value(QStringLiteral("name")).toString();
         const bool enabled = obj.value(QStringLiteral("enabled")).toBool();
 
+        const QString friendlyName = friendlyNameFromEdid(name);
+
         QVariantMap entry;
         entry[QStringLiteral("name")] = name;
         entry[QStringLiteral("enabled")] = enabled;
+        entry[QStringLiteral("label")] = friendlyName.isEmpty()
+            ? name
+            : QStringLiteral("%1 (%2)").arg(friendlyName, name);
         m_outputs.append(entry);
 
         sawConnected = true;
@@ -108,7 +186,13 @@ void MonitorController::refreshOutputs()
         setMainOutput(m_outputs.first().toMap().value(QStringLiteral("name")).toString());
     }
 
-    emit outputsChanged();
+    if (!sawConnected) {
+        qWarning() << "No connected monitor outputs detected from kscreen-doctor";
+    }
+
+    if (m_outputs != previousOutputs) {
+        emit outputsChanged();
+    }
 
     const bool newActive = anyDisabled;
     if (newActive != m_cinemaActive) {
@@ -133,7 +217,7 @@ void MonitorController::toggleCinema()
         return;
     }
 
-    QProcess::execute(QStringLiteral("kscreen-doctor"), args);
+    runKscreenDoctor(args);
 
     refreshOutputs();
 }

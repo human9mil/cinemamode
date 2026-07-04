@@ -41,6 +41,10 @@ To install system-wide:
 sudo cmake --install build
 ```
 
+## Troubleshooting
+
+If toggling cinema mode doesn't seem to do anything, the underlying `kscreen-doctor` call is almost certainly failing or timing out. Run `cinemamode` from a terminal to see warnings directly, or check `journalctl --user -f` while you click the button — look for messages like "kscreen-doctor timed out or failed to start", "Failed to parse kscreen-doctor JSON", or "No connected monitor outputs detected".
+
 ## Installing
 
 - **AUR**: not yet published (see `packaging/PKGBUILD`)

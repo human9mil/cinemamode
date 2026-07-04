@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QIcon>
@@ -74,6 +75,9 @@ int main(int argc, char *argv[])
                       });
 
     auto updateTrayTooltip = [&trayIcon, controller] {
+        if (!controller) {
+            return;
+        }
         trayIcon.setToolTip(QStringLiteral("org.cinemamode.app"), QObject::tr("Cinema Mode"),
                              controller->cinemaActive() ? QObject::tr("Now Showing") : QObject::tr("Standing By"));
     };

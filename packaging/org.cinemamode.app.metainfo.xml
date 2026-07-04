@@ -56,6 +56,11 @@
   </provides>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="1.2.0" date="2026-07-04">
+      <description>
+        <p>Shows real monitor names (e.g. "LG UltraGear (DP-2)") instead of bare connector names, read straight from each display's EDID. Also fixes a bug where a hung kscreen-doctor call could freeze the app indefinitely, adds diagnostic logging for troubleshooting, and includes several small robustness and packaging improvements.</p>
+      </description>
+    </release>
     <release version="1.1.0" date="2026-07-04">
       <description>
         <p>Adds a global keyboard shortcut (Meta+Shift+C) and a system tray icon, so cinema mode can be toggled without opening the window.</p>

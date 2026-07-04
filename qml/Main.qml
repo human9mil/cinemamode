@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
 import QtQuick
 import QtQuick.Controls as Controls
 import QtQuick.Layouts
@@ -8,9 +9,9 @@ Kirigami.ApplicationWindow {
     id: root
 
     title: qsTr("Cinema Mode")
-    width: Kirigami.Units.gridUnit * 22
+    width: Kirigami.Units.gridUnit * 26
     height: Kirigami.Units.gridUnit * 30
-    minimumWidth: Kirigami.Units.gridUnit * 18
+    minimumWidth: Kirigami.Units.gridUnit * 20
     minimumHeight: Kirigami.Units.gridUnit * 24
 
     pageStack.globalToolBar.style: Kirigami.ApplicationHeaderStyle.None
@@ -217,9 +218,11 @@ Kirigami.ApplicationWindow {
 
                 Controls.ComboBox {
                     Kirigami.FormData.label: qsTr("Keep this monitor on:")
-                    model: MonitorController.outputs.map(o => o.name)
-                    currentIndex: model.indexOf(MonitorController.mainOutput)
-                    onActivated: MonitorController.mainOutput = currentText
+                    readonly property var outputNames: MonitorController.outputs.map(o => o.name)
+                    model: MonitorController.outputs.map(o => o.label)
+                    currentIndex: outputNames.indexOf(MonitorController.mainOutput)
+                    onActivated: MonitorController.mainOutput = outputNames[currentIndex]
+                    implicitContentWidthPolicy: Controls.ComboBox.WidestText
                 }
             }
 
@@ -254,7 +257,7 @@ Kirigami.ApplicationWindow {
                             }
 
                             Controls.Label {
-                                text: modelData.name + (modelData.name === MonitorController.mainOutput ? qsTr(" · main") : "")
+                                text: modelData.label + (modelData.name === MonitorController.mainOutput ? qsTr(" · main") : "")
                                 color: root.marqueeGold
                             }
 
