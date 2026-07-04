@@ -1,12 +1,12 @@
 # Maintainer: human9mil <human9mil@users.noreply.github.com>
 pkgname=cinemamode
-pkgver=1.0.0
+pkgver=1.1.0
 pkgrel=1
 pkgdesc="Blank every monitor except your main one while watching a movie"
 arch=('x86_64')
 url="https://github.com/human9mil/cinemamode"
 license=('GPL-3.0-or-later')
-depends=('qt6-base' 'qt6-declarative' 'kirigami' 'libplasma' 'kscreen')
+depends=('qt6-base' 'qt6-declarative' 'kirigami' 'libplasma' 'kscreen' 'kglobalaccel' 'kstatusnotifieritem')
 makedepends=('cmake' 'extra-cmake-modules')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/human9mil/cinemamode/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('SKIP')

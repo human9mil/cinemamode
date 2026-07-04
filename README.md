@@ -17,11 +17,15 @@ Made with love, for cinema lovers everywhere.
 - Instantly restores every display to its exact previous position and resolution
 - Remembers your favorite "main" monitor between launches
 - A cinema-themed interface that feels like part of the show
+- Global keyboard shortcut (`Meta+Shift+C` by default, remappable in System Settings → Shortcuts → Cinema Mode) to toggle without opening the window
+- System tray icon — left-click toggles cinema mode directly; right-click gives you "Show Window" and "Quit"
+
+Closing the window does **not** quit the app — it keeps running in the tray so the shortcut and tray icon keep working. Use the tray icon's right-click menu to actually quit.
 
 ## Requirements
 
 - KDE Plasma (Wayland or X11) — uses `kscreen-doctor` under the hood
-- Qt6, Qt Quick, Kirigami (KF6)
+- Qt6 (Core, Gui, Widgets, Qml, Quick, QuickControls2), Kirigami, KGlobalAccel, and KStatusNotifierItem (all KF6)
 
 ## Building from source
 

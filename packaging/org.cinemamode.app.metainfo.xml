@@ -56,6 +56,11 @@
   </provides>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="1.1.0" date="2026-07-04">
+      <description>
+        <p>Adds a global keyboard shortcut (Meta+Shift+C) and a system tray icon, so cinema mode can be toggled without opening the window.</p>
+      </description>
+    </release>
     <release version="1.0.0" date="2026-07-04"/>
   </releases>
 </component>

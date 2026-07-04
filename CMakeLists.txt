@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
-project(cinemamode VERSION 1.0.0 LANGUAGES CXX)
+project(cinemamode VERSION 1.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Qml Quick QuickControls2)
 find_package(KF6Kirigami REQUIRED)
+find_package(KF6GlobalAccel REQUIRED)
+find_package(KF6StatusNotifierItem REQUIRED)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -28,9 +30,12 @@ target_include_directories(cinemamode PRIVATE src)
 target_link_libraries(cinemamode PRIVATE
     Qt6::Core
     Qt6::Gui
+    Qt6::Widgets
     Qt6::Qml
     Qt6::Quick
     Qt6::QuickControls2
+    KF6::GlobalAccel
+    KF6::StatusNotifierItem
 )
 
 include(GNUInstallDirs)
