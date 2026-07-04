@@ -20,7 +20,7 @@ Made with love, for cinema lovers everywhere.
 - Global keyboard shortcut (`Meta+Shift+C` by default, remappable in System Settings → Shortcuts → Cinema Mode) to toggle without opening the window
 - System tray icon — left-click toggles cinema mode directly; right-click gives you "Show Window" and "Quit"
 
-Closing the window does **not** quit the app — it keeps running in the tray so the shortcut and tray icon keep working. Use the tray icon's right-click menu to actually quit.
+Closing the window does **not** quit the app it keeps running in the tray so the shortcut and tray icon keep working. Use the tray icon's right-click menu to actually quit.
 
 ## Requirements
 
@@ -43,7 +43,7 @@ sudo cmake --install build
 
 ## Troubleshooting
 
-If toggling cinema mode doesn't seem to do anything, the underlying `kscreen-doctor` call is almost certainly failing or timing out. Run `cinemamode` from a terminal to see warnings directly, or check `journalctl --user -f` while you click the button — look for messages like "kscreen-doctor timed out or failed to start", "Failed to parse kscreen-doctor JSON", or "No connected monitor outputs detected".
+If toggling cinema mode doesn't seem to do anything, the underlying `kscreen-doctor` call is almost certainly failing or timing out. Run `cinemamode` from a terminal to see warnings directly, or check `journalctl --user -f` while you click the button look for messages like "kscreen-doctor timed out or failed to start", "Failed to parse kscreen-doctor JSON", or "No connected monitor outputs detected".
 
 ## Installing
 
