@@ -50,6 +50,10 @@ If toggling cinema mode doesn't seem to do anything, the underlying `kscreen-doc
 - **AUR**: not yet published (see `packaging/PKGBUILD`)
 - **Flathub / KDE Store**: not yet published
 
+## Website
+
+The marketing site lives in [`website/`](website/) — a static HTML/CSS site (built with Vite, zero JavaScript shipped) deployed to Cloudflare Pages. See [`website/README.md`](website/README.md) for local development and deployment instructions.
+
 ## License
 
 GPL-3.0-or-later — see [LICENSE](LICENSE).

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="One-click cinema mode for movie lovers with multi-monitor desks."
+    />
+    <title>Cinema Mode</title>
+    <link rel="stylesheet" href="/src/index.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="sprocket-border" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="content-width hero-content">
+        <div class="hero-icon-wrap">
+          <img
+            src="/src/assets/cinemamode-icon.svg"
+            alt=""
+            class="hero-icon"
+            width="96"
+            height="96"
+          />
+        </div>
+        <h1>Cinema Mode</h1>
+        <p class="body-text hero-tagline">
+          One-click cinema mode for movie lovers with multi-monitor desks.
+        </p>
+        <div class="hero-cta-row">
+          <a
+            class="btn btn-primary"
+            href="https://github.com/human9mil/cinemamode/releases"
+          >
+            View Releases
+          </a>
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/human9mil/cinemamode"
+          >
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section aria-labelledby="story-heading">
+        <div class="content-width">
+          <div class="section-heading">
+            <h2 id="story-heading">The Story</h2>
+          </div>
+          <div class="story-content body-text">
+            <p>
+              I&rsquo;ve always loved movies really loved them, the kind where
+              you dim the lights and give the screen your full attention. But
+              at my desk, with two or three monitors glowing on either side, a
+              movie never quite felt like a movie. There was always some other
+              window spilling light into the room, pulling my eyes away from
+              the story.
+            </p>
+            <p>
+              Cinema Mode is the fix I built for that. One click before the
+              movie starts, and every monitor except the one you&rsquo;re
+              watching on actually turns off no dimming tricks, no black
+              overlay windows, the displays themselves go dark. Click again
+              when the credits roll, and everything comes back exactly where
+              you left it.
+            </p>
+            <p class="story-closing">
+              Made with love, for cinema lovers everywhere.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="screenshots-heading">
+        <div class="content-width">
+          <div class="section-heading">
+            <h2 id="screenshots-heading">Screenshots</h2>
+          </div>
+          <div class="screenshots-grid">
+            <figure>
+              <picture>
+                <source
+                  srcset="/src/assets/screenshot-standing-by.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/src/assets/screenshot-standing-by.png"
+                  alt="Standing by, one click away from cinema mode"
+                  width="380"
+                  height="438"
+                  loading="lazy"
+                />
+              </picture>
+              <figcaption class="caption-text">
+                Standing by, one click away from cinema mode
+              </figcaption>
+            </figure>
+            <figure>
+              <picture>
+                <source
+                  srcset="/src/assets/screenshot-now-showing.webp"
+                  type="image/webp"
+                />
+                <img
+                  src="/src/assets/screenshot-now-showing.png"
+                  alt="Now showing, every other monitor blanked"
+                  width="380"
+                  height="438"
+                  loading="lazy"
+                />
+              </picture>
+              <figcaption class="caption-text">
+                Now showing, every other monitor blanked
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="features-heading">
+        <div class="content-width">
+          <div class="section-heading">
+            <h2 id="features-heading">Features</h2>
+          </div>
+          <ul class="features-list body-text">
+            <li>One click to blank every monitor except the one you choose</li>
+            <li>
+              Instantly restores every display to its exact previous position
+              and resolution
+            </li>
+            <li>
+              Remembers your favorite &quot;main&quot; monitor between
+              launches
+            </li>
+            <li>A cinema-themed interface that feels like part of the show</li>
+            <li>
+              Global keyboard shortcut (Meta+Shift+C by default, remappable in
+              System Settings → Shortcuts → Cinema Mode) to toggle without
+              opening the window
+            </li>
+            <li>
+              System tray icon — left-click toggles cinema mode directly;
+              right-click gives you &quot;Show Window&quot; and
+              &quot;Quit&quot;
+            </li>
+          </ul>
+          <div class="callout-box body-text">
+            Closing the window doesn&rsquo;t quit the app&mdash;it keeps
+            running in the tray.
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="requirements-heading">
+        <div class="content-width">
+          <div class="section-heading">
+            <h2 id="requirements-heading">Requirements</h2>
+          </div>
+          <dl class="requirements-box body-text">
+            <div class="requirements-row">
+              <dt>Desktop Environment</dt>
+              <dd>KDE Plasma (Wayland or X11)</dd>
+            </div>
+            <div class="requirements-row">
+              <dt>Toolkit &amp; Frameworks</dt>
+              <dd>
+                <ul class="pill-list">
+                  <li class="pill">Qt6 Core</li>
+                  <li class="pill">Gui</li>
+                  <li class="pill">Widgets</li>
+                  <li class="pill">Qml</li>
+                  <li class="pill">Quick</li>
+                  <li class="pill">QuickControls2</li>
+                  <li class="pill">Kirigami</li>
+                  <li class="pill">KGlobalAccel</li>
+                  <li class="pill">KStatusNotifierItem</li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section aria-labelledby="getting-it-heading">
+        <div class="content-width getting-it-content">
+          <div class="section-heading">
+            <h2 id="getting-it-heading">Getting It</h2>
+          </div>
+          <a
+            class="btn btn-primary"
+            href="https://github.com/human9mil/cinemamode/releases"
+          >
+            View Latest Release (v1.2.0)
+          </a>
+          <p class="getting-it-subtext caption-text">
+            Source release only&mdash;no prebuilt binaries yet. Build with
+            CMake&mdash;see the README for instructions.
+          </p>
+          <p class="getting-it-note">
+            Not yet available: AUR &middot; Flathub &middot; KDE Store
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="sprocket-border" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="content-width footer-content">
+        <div class="footer-brand">
+          <img
+            src="/src/assets/cinemamode-icon.svg"
+            alt=""
+            class="footer-icon"
+            width="28"
+            height="28"
+          />
+          <span>Cinema Mode</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/human9mil/cinemamode/blob/main/LICENSE">
+            GPL-3.0-or-later
+          </a>
+          <span>Built by human9mil</span>
+          <a href="https://github.com/human9mil/cinemamode">Repository</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
