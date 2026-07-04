@@ -2,14 +2,15 @@ id: io.github.human9mil.cinemamode
 runtime: org.kde.Platform
 runtime-version: '6.10'
 sdk: org.kde.Sdk
-sdk-version: '6.10'
 command: cinemamode
 
 finish-args:
-  # Standard Wayland GUI app access. fallback-x11 covers XWayland edge cases;
+  # Standard Wayland GUI app access. fallback-x11 covers XWayland edge cases
+  # (requires --share=ipc alongside it for X11 shared-memory/MIT-SHM to work);
   # dri is needed for normal Qt Quick / OpenGL scene graph rendering.
   - --socket=wayland
   - --socket=fallback-x11
+  - --share=ipc
   - --device=dri
 
   # System tray icon (KStatusNotifierItem registers with this well-known name).

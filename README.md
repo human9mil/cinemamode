@@ -47,13 +47,17 @@ If toggling cinema mode doesn't seem to do anything, the underlying `kscreen-doc
 
 ## Installing
 
-- **AUR**: package (`cinemamode`) is built and tested locally (`makepkg` succeeds end-to-end against the real v1.3.0 release tarball, checksum verified) but not yet submitted — see `packaging/PKGBUILD` and `packaging/.SRCINFO`. Submitting requires an AUR account with an SSH key registered.
-- **Flathub**: manifest at `packaging/io.github.human9mil.cinemamode.yml`, built and tested locally end-to-end with `flatpak-builder` (kscreen-doctor is compiled from source as a module, since Flathub has no shared module for it) — confirmed working from inside the sandbox: tray icon, global shortcut, and the actual monitor-blanking toggle. Not yet submitted; submission requires a PR against `github.com/flathub/flathub` and goes through Flathub's review process.
-- **KDE Store**: not yet submitted — check the current submission requirements at store.kde.org directly, since its process may have changed since this was last checked.
+- **AUR**: package (`cinemamode`) is built and tested locally (`makepkg` succeeds end-to-end against the real v1.3.0 release tarball, checksum verified) and ready to submit — see `packaging/PKGBUILD` and `packaging/.SRCINFO`. Submitting requires an AUR account with an SSH key registered.
+- **Flathub**: not yet ready for submission.
+- **KDE Store**: metainfo is valid and ready (`packaging/io.github.human9mil.cinemamode.metainfo.xml`); submission itself is a manual step at store.kde.org.
 
 ## Website
 
 The marketing site lives in [`website/`](website/) — a static HTML/CSS site (built with Vite, zero JavaScript shipped) deployed to Cloudflare Pages. See [`website/README.md`](website/README.md) for local development and deployment instructions.
+
+## AI Assistance
+
+Parts of this project — code, packaging, and documentation — were built with AI assistance (Claude). All of it has been reviewed by me, and I take full responsibility for everything in this repository.
 
 ## License
 
