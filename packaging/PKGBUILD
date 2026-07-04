@@ -9,7 +9,7 @@ license=('GPL-3.0-or-later')
 depends=('qt6-base' 'qt6-declarative' 'kirigami' 'libplasma' 'kscreen' 'kglobalaccel' 'kstatusnotifieritem')
 makedepends=('cmake' 'extra-cmake-modules')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/human9mil/cinemamode/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('8c87fb6bee293f28fd4cdc40597faa3d59556a6cce7ecbce594ec098c3087e17')
 
 build() {
     cmake -B build -S "$pkgname-$pkgver" \

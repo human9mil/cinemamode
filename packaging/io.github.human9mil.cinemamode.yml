@@ -1,0 +1,61 @@
+id: io.github.human9mil.cinemamode
+runtime: org.kde.Platform
+runtime-version: '6.10'
+sdk: org.kde.Sdk
+sdk-version: '6.10'
+command: cinemamode
+
+finish-args:
+  # Standard Wayland GUI app access. fallback-x11 covers XWayland edge cases;
+  # dri is needed for normal Qt Quick / OpenGL scene graph rendering.
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+
+  # System tray icon (KStatusNotifierItem registers with this well-known name).
+  - --talk-name=org.kde.StatusNotifierWatcher
+
+  # Global keyboard shortcut registration (Meta+Shift+C).
+  - --talk-name=org.kde.kglobalaccel
+
+  # kscreen-doctor does NOT talk the Wayland output-management protocol
+  # directly. It calls into the org.kde.KScreen session-bus service (D-Bus
+  # activated, backed by /usr/lib/systemd/user/plasma-kscreen.service on the
+  # host), which in turn owns the actual KWayland backend connection. Without
+  # this the sandboxed kscreen-doctor binary can start, but every query/set
+  # call times out because it can never reach the backend launcher over
+  # D-Bus. Confirmed via source read of libkscreen's BackendManager
+  # (src/backendmanager.cpp) and live `busctl --user list` showing
+  # org.kde.KScreen as (activatable) on this host.
+  - --talk-name=org.kde.KScreen
+
+  # Reading each monitor's real display name straight from its EDID block.
+  # Read-only, and scoped to /sys/class/drm rather than all of /sys.
+  - --filesystem=/sys/class/drm:ro
+
+modules:
+  # libkscreen provides both the KF6::Screen library AND the kscreen-doctor
+  # CLI binary (src/doctor/) that the app shells out to. Note: the separate
+  # "kscreen" KDE module (kcm/kded/osd/plasmoid, with its much heavier
+  # LayerShellQt/Plasma/PlasmaQuick/X11 dependency chain) is NOT needed here
+  # -- kscreen-doctor lives entirely inside libkscreen, confirmed via
+  # `pacman -Qo /usr/bin/kscreen-doctor` -> "owned by libkscreen 6.7.2-1.1".
+  - name: libkscreen
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_TESTING=OFF
+      - -DBUILD_QCH=OFF
+    sources:
+      - type: archive
+        url: https://download.kde.org/stable/plasma/6.7.2/libkscreen-6.7.2.tar.xz
+        sha256: 408dc2753001a689cadfc77bdcc4a968baa385cae8dd8abce6c3ce422284d078
+
+  - name: cinemamode
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: archive
+        url: https://github.com/human9mil/cinemamode/archive/refs/tags/v1.3.0.tar.gz
+        sha256: 8c87fb6bee293f28fd4cdc40597faa3d59556a6cce7ecbce594ec098c3087e17

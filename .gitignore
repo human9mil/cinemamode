@@ -1,1 +1,6 @@
 build/
+
+# Flatpak local build artifacts (packaging/io.github.human9mil.cinemamode.yml)
+.flatpak-builder/
+build-dir/
+repo/

@@ -47,8 +47,9 @@ If toggling cinema mode doesn't seem to do anything, the underlying `kscreen-doc
 
 ## Installing
 
-- **AUR**: not yet published (see `packaging/PKGBUILD`)
-- **Flathub / KDE Store**: not yet published
+- **AUR**: package (`cinemamode`) is built and tested locally (`makepkg` succeeds end-to-end against the real v1.3.0 release tarball, checksum verified) but not yet submitted — see `packaging/PKGBUILD` and `packaging/.SRCINFO`. Submitting requires an AUR account with an SSH key registered.
+- **Flathub**: manifest at `packaging/io.github.human9mil.cinemamode.yml`, built and tested locally end-to-end with `flatpak-builder` (kscreen-doctor is compiled from source as a module, since Flathub has no shared module for it) — confirmed working from inside the sandbox: tray icon, global shortcut, and the actual monitor-blanking toggle. Not yet submitted; submission requires a PR against `github.com/flathub/flathub` and goes through Flathub's review process.
+- **KDE Store**: not yet submitted — check the current submission requirements at store.kde.org directly, since its process may have changed since this was last checked.
 
 ## Website
 
