@@ -2,9 +2,9 @@
 
 One-click cinema mode for movie lovers with multi-monitor desks.
 
-I've always loved movies — really loved them, the kind where you dim the lights and give the screen your full attention. But at my desk, with two or three monitors glowing on either side, a movie never quite felt like a movie. There was always some other window spilling light into the room, pulling my eyes away from the story.
+I've always loved movies really loved them, the kind where you dim the lights and give the screen your full attention. But at my desk, with two or three monitors glowing on either side, a movie never quite felt like a movie. There was always some other window spilling light into the room, pulling my eyes away from the story.
 
-Cinema Mode is the fix I built for that. One click before the movie starts, and every monitor except the one you're watching on actually turns off — no dimming tricks, no black overlay windows, the displays themselves go dark. Click again when the credits roll, and everything comes back exactly where you left it.
+Cinema Mode is the fix I built for that. One click before the movie starts, and every monitor except the one you're watching on actually turns off no dimming tricks, no black overlay windows, the displays themselves go dark. Click again when the credits roll, and everything comes back exactly where you left it.
 
 Made with love, for cinema lovers everywhere.
 
