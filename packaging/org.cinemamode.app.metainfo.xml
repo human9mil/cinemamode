@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.cinemamode.app</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Cinema Mode</name>
+  <developer id="io.github.human9mil">
+    <name>human9mil</name>
+  </developer>
+  <icon type="stock">org.cinemamode.app</icon>
+  <summary>One-click cinema mode for movie lovers with multi-monitor desks</summary>
+  <description>
+    <p>
+      I've always loved movies — really loved them, the kind where you dim the
+      lights and give the screen your full attention. But at my desk, with two
+      or three monitors glowing on either side, a movie never quite felt like a
+      movie. There was always some other window spilling light into the room,
+      pulling my eyes away from the story.
+    </p>
+    <p>
+      Cinema Mode is the fix I built for that. One click before the movie
+      starts, and every monitor except the one you're watching on actually
+      turns off — no dimming tricks, no black overlay windows, the displays
+      themselves go dark. Click again when the credits roll, and everything
+      comes back exactly where you left it. It's a small thing, but if you're
+      a fellow movie lover working from a multi-monitor desk, I think you'll
+      feel the difference the first time you use it.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>One click to blank every monitor except the one you choose</li>
+      <li>Instantly restores every display to its exact previous position and resolution</li>
+      <li>Remembers your favorite "main" monitor between launches</li>
+      <li>A cinema-themed interface that feels like part of the show</li>
+    </ul>
+    <p>Made with love, for cinema lovers everywhere.</p>
+  </description>
+  <launchable type="desktop-id">org.cinemamode.app.desktop</launchable>
+  <categories>
+    <category>AudioVideo</category>
+    <category>Utility</category>
+  </categories>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Standing by, one click away from cinema mode</caption>
+      <image type="source">https://raw.githubusercontent.com/human9mil/cinemamode/main/packaging/screenshots/screenshot-standing-by.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Now showing, every other monitor blanked</caption>
+      <image type="source">https://raw.githubusercontent.com/human9mil/cinemamode/main/packaging/screenshots/screenshot-now-showing.png</image>
+    </screenshot>
+  </screenshots>
+  <url type="homepage">https://github.com/human9mil/cinemamode</url>
+  <provides>
+    <binary>cinemamode</binary>
+  </provides>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="1.0.0" date="2026-07-04"/>
+  </releases>
+</component>

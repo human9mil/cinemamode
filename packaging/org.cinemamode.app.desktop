@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Cinema Mode
+Comment=One-click cinema mode for movie lovers with multi-monitor desks
+Exec=cinemamode
+Icon=org.cinemamode.app
+Categories=AudioVideo;Utility;
+Terminal=false
+StartupNotify=true
