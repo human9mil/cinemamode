@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>org.cinemamode.app</id>
+  <id>io.github.human9mil.cinemamode</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <name>Cinema Mode</name>
   <developer id="io.github.human9mil">
     <name>human9mil</name>
   </developer>
-  <icon type="stock">org.cinemamode.app</icon>
+  <icon type="stock">io.github.human9mil.cinemamode</icon>
   <summary>One-click cinema mode for movie lovers with multi-monitor desks</summary>
   <description>
     <p>
@@ -35,7 +35,7 @@
     </ul>
     <p>Made with love, for cinema lovers everywhere.</p>
   </description>
-  <launchable type="desktop-id">org.cinemamode.app.desktop</launchable>
+  <launchable type="desktop-id">io.github.human9mil.cinemamode.desktop</launchable>
   <categories>
     <category>AudioVideo</category>
     <category>Utility</category>
@@ -56,6 +56,11 @@
   </provides>
   <content_rating type="oars-1.1"/>
   <releases>
+    <release version="1.3.0" date="2026-07-04">
+      <description>
+        <p>Renames the app id to io.github.human9mil.cinemamode to prepare for Flathub and KDE Store submission. No functional changes.</p>
+      </description>
+    </release>
     <release version="1.2.0" date="2026-07-04">
       <description>
         <p>Shows real monitor names (e.g. "LG UltraGear (DP-2)") instead of bare connector names, read straight from each display's EDID. Also fixes a bug where a hung kscreen-doctor call could freeze the app indefinitely, adds diagnostic logging for troubleshooting, and includes several small robustness and packaging improvements.</p>

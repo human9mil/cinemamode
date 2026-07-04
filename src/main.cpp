@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QApplication::setOrganizationName(QStringLiteral("CinemaMode"));
     QApplication::setApplicationName(QStringLiteral("cinemamode"));
-    QApplication::setDesktopFileName(QStringLiteral("org.cinemamode.app"));
-    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("org.cinemamode.app")));
+    QApplication::setDesktopFileName(QStringLiteral("io.github.human9mil.cinemamode"));
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("io.github.human9mil.cinemamode")));
 
     // Closing the window should leave cinemamode running in the tray, not quit it.
     QApplication::setQuitOnLastWindowClosed(false);
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     QObject::connect(quitAction, &QAction::triggered, &app, &QApplication::quit);
 
     KStatusNotifierItem trayIcon;
-    trayIcon.setIconByName(QStringLiteral("org.cinemamode.app"));
+    trayIcon.setIconByName(QStringLiteral("io.github.human9mil.cinemamode"));
     trayIcon.setTitle(QObject::tr("Cinema Mode"));
     trayIcon.setCategory(KStatusNotifierItem::ApplicationStatus);
     trayIcon.setStatus(KStatusNotifierItem::Active);
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
         if (!controller) {
             return;
         }
-        trayIcon.setToolTip(QStringLiteral("org.cinemamode.app"), QObject::tr("Cinema Mode"),
+        trayIcon.setToolTip(QStringLiteral("io.github.human9mil.cinemamode"), QObject::tr("Cinema Mode"),
                              controller->cinemaActive() ? QObject::tr("Now Showing") : QObject::tr("Standing By"));
     };
     QObject::connect(controller, &MonitorController::cinemaActiveChanged, &app, updateTrayTooltip);

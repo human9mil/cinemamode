@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(cinemamode VERSION 1.2.0 LANGUAGES CXX)
+project(cinemamode VERSION 1.3.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -44,14 +44,14 @@ install(TARGETS cinemamode
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-install(FILES packaging/org.cinemamode.app.desktop
+install(FILES packaging/io.github.human9mil.cinemamode.desktop
     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
 
-install(FILES packaging/org.cinemamode.app.metainfo.xml
+install(FILES packaging/io.github.human9mil.cinemamode.metainfo.xml
     DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo
 )
 
-install(FILES packaging/icons/org.cinemamode.app.svg
+install(FILES packaging/icons/io.github.human9mil.cinemamode.svg
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
 )
