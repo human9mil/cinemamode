@@ -51,10 +51,6 @@ If toggling cinema mode doesn't seem to do anything, the underlying `kscreen-doc
 - **Flathub**: not yet ready for submission.
 - **KDE Store**: metainfo is valid and ready (`packaging/io.github.human9mil.cinemamode.metainfo.xml`); submission itself is a manual step at store.kde.org.
 
-## Website
-
-The marketing site lives in [`website/`](website/) — a static HTML/CSS site (built with Vite, zero JavaScript shipped) deployed to Cloudflare Pages. See [`website/README.md`](website/README.md) for local development and deployment instructions.
-
 ## AI Assistance
 
 Parts of this project — code, packaging, and documentation — were built with AI assistance (Claude). All of it has been reviewed by me, and I take full responsibility for everything in this repository.
